@@ -1,0 +1,35 @@
+{
+  "envId": "{{env.ENV_ID}}",
+  "version": "2.0",
+  "$schema": "https://framework-1258016615.tcloudbaseapp.com/schema/latest.json",
+  "framework": {
+    "name": "meilisearch",
+    "plugins": {
+      "server": {
+        "use": "@cloudbase/framework-plugin-container",
+        "inputs": {
+          "cpu": 0.5,
+          "mem": 1,
+          "serviceName": "search",
+          "servicePath": "/",
+          "uploadType": "image",
+          "containerPort": 7700,
+          "imageInfo": {
+            "imageUrl": "getmeili/meilisearch:latest"
+          },
+          "volumeMounts": {
+            "/home/meili/": "meilisearch-cfs"
+          }
+        }
+      }
+    },
+    "requirement": {
+      "addons": [
+        {
+          "type": "CFS",
+          "name": "meilisearch-cfs"
+        }
+      ]
+    }
+  }
+}
